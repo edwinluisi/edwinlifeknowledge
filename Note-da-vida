@@ -1,0 +1,49 @@
+pfiles /proc/* 2>/dev/null | nawk '/^[0-9]*:/ { pid=$0 } /port: MOLEQUE$/ { printf("%s %s\n",pid,$0);}'
+(Pega o processo que está utilizando a porta MOLEQUE no Solaris)
+
+###############################################################################################################
+awk -vRS= '/export INTERNAL_IP_ADDRESSES/' <file>
+(Pega o parágrafo do pattern procurado no arquico X)
+
+###############################################################################################################
+awk '/DELETE/{print;getline;print;}' <file>
+#Procura a string 'DELETE' e printa ela e a linha seguinte
+
+###############################################################################################################
+truss -t lstat64 -v lstat64 ls <arquivo>
+(Equivalente ao stat no Linux)
+
+###############################################################################################################
+Check MD5 on Solaris:
+digest -a md5 -v <binary>
+
+###############################################################################################################
+Somar tamanho arquivos:
+ ls -lh php*; ls -l php* | awk '{ SUM += $5} END { print SUM/1024/1024 }'
+ 
+ ###############################################################################################################
+ Remover diretório/arquivo com nome estranho pelo inode:
+# ls -ila 
+14549980 drwxr-xr-x  3 root root       4096 Mar  5 20:45 ">?<
+And pipeline it to rm:
+
+find . -inum 14549980  -exec rm -ir {} \;
+
+###############################################################################################################
+tar -xavf ../p2.tar --strip=1 ./client/
+*Extrai apenas o diretório 'client' do p2.tar
+(No Linux)
+
+###############################################################################################################
+Inserir id_rsa.pub do servidor client no authorized_keys do server
+No server alterar o .ssh para 700 e o authorized_keys para 640.
+
+###############################################################################################################
+/usr/bin/curl --user <usuário>.nexus:<password> --fail --continue-at - --upload-file /<local_path> http://<ip>:<port>/<path_destination>
+
+###############################################################################################################
+AWK usables:
+https://www.thegeekstuff.com/2010/02/awk-conditional-statements/
+https://www.thegeekstuff.com/2010/01/awk-introduction-tutorial-7-awk-print-examples/
+
+###############################################################################################################
