@@ -1,38 +1,38 @@
 pfiles /proc/* 2>/dev/null | nawk '/^[0-9]*:/ { pid=$0 } /port: MOLEQUE$/ { printf("%s %s\n",pid,$0);}'
-(Pega o processo que está utilizando a porta MOLEQUE no Solaris)
+#... Get the process id from the processes using the port 'MOLEQUE' ...#
 
 ###############################################################################################################
 awk -vRS= '/export INTERNAL_IP_ADDRESSES/' <file>
-(Pega o parágrafo do pattern procurado no arquico X)
+#... Return the paragraph where the pattern is in the file ...#
 
 ###############################################################################################################
 awk '/DELETE/{print;getline;print;}' <file>
-#Procura a string 'DELETE' e printa ela e a linha seguinte
+#... Search for the 'DELETE' string and return the line and the next one line ...#
 
 ###############################################################################################################
 truss -t lstat64 -v lstat64 ls <arquivo>
-(Equivalente ao stat no Linux)
+#... Works on Solaris as 'stat' command workns on Linux ...#
 
 ###############################################################################################################
-Check MD5 on Solaris:
 digest -a md5 -v <binary>
+#... Check MD5 on Solaris ...#
 
 ###############################################################################################################
-Somar tamanho arquivos:
  ls -lh php*; ls -l php* | awk '{ SUM += $5} END { print SUM/1024/1024 }'
+ #... Will sum the size of the files ...#
  
  ###############################################################################################################
- Remover diretório/arquivo com nome estranho pelo inode:
-# ls -ila 
+ls -ila 
 14549980 drwxr-xr-x  3 root root       4096 Mar  5 20:45 ">?<
-And pipeline it to rm:
 
-find . -inum 14549980  -exec rm -ir {} \;
+And pipeline it to rm:
+find . -inum 14549980 -exec rm -ir {} \;
+
+#... Will find the file or directory with the stranger character and remove by the inode ...#
 
 ###############################################################################################################
 tar -xavf ../p2.tar --strip=1 ./client/
-*Extrai apenas o diretório 'client' do p2.tar
-(No Linux)
+#... Will extract only the 'client' directory from p2.tar tar file on Linux ...#
 
 ###############################################################################################################
 Inserir id_rsa.pub do servidor client no authorized_keys do server
